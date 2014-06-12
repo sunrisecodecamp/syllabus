@@ -1,5 +1,9 @@
 require 'sinatra'
 
 get '/' do
-  'hello world'
+  @contacts = Contact.all
+end
+
+post '/contacts' do
+  Contact.create!(name: params[:name], email: params[:email])
 end
