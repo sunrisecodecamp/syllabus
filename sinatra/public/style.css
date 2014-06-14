@@ -1,1 +1,9 @@
 /* Add your CSS to this file */
+body {
+	background-color: red;
+}
+
+
+.title {
+	font-family: sans-serif;
+}

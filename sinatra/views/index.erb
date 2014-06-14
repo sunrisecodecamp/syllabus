@@ -1,1 +1,31 @@
 <!-- Add your HTML to this file -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My Contacts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<h1 class="title">Customers and Comments</h1>
+	<% @contacts.each do |c| %>
+		<p><%= c.name %>: <%= c.email %></p>
+		<p><%= c.comment %></p>
+		<p>--------------------------------</p>
+	<% end %>
+
+	<h3>Enter your info here:</h3>
+
+	<% if @error %>
+		<p><%= @error %></p>
+	<% end %>
+
+	<form action="/contacts" method="post" accept-charset="utf-8">
+		<p>Name (required): <input type="text" name="contact[name]" /></p>
+		<p>Email (required): <input type="text" name="contact[email]"></p>
+		<p>Comment (optional): <textarea name="contact[comment]" id="" cols="30" rows="10"></textarea></p>
+		<p><input type="submit" value="Add contact" /></p>
+	</form>
+	
+</body>
+</html>

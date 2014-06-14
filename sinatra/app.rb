@@ -1,32 +1,29 @@
-# The three lines below tell this file (app.rb) what other files it needs to reference to run properly.
 require 'sinatra'
 require 'data_mapper'
 require './environments'
 
-
-
-# Create a model for your database. What properties should the object have?
-class _____________
+class Contact
 	include DataMapper::Resource
 	property :id, Serial
-	property :_________, __Type__, :required => true
-  property :_________, __Type__
-  property :_________, __Type__
+	property :name, String, :required => true
+  property :email, String, :required => true
+  property :comment, Text
 end
+
 DataMapper.finalize.auto_upgrade!
 
+get '/' do
+	@contacts = Contact.all
+	erb :'/index'
+end
 
-
-# Create a 'get' route for the root page
-
-
-
-
-
-
-
-# Create a 'post' route that enters the form data into the database.
-# Make sure this route has an if/else statement that checks whether or not the 
-# form data saves.
-
-
+post '/contacts' do
+	contact = Contact.new(params[:contact])
+	if contact.save
+		redirect '/'
+	else
+		@contacts = Contact.all
+		@error = "Post was not able to save. Please try again."
+		erb :'/index'
+	end
+end
