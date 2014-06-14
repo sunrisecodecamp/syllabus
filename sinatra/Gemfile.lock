@@ -90,7 +90,11 @@ PLATFORMS
 
 DEPENDENCIES
   data_mapper
+  dm-core
+  dm-migrations
   dm-sqlite-adapter
+  dm-timestamps
+  dm-validations
   sinatra
   sqlite3
   tux

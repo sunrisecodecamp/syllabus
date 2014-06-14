@@ -10,7 +10,7 @@ class Contact
   property :name,         String, :required => true
   property :email,        String, :required => true
 end
-DataMapper.finalize
+DataMapper.finalize.auto_upgrade!
 
 get '/' do
   @contacts = Contact.all || []
