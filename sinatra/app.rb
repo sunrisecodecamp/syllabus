@@ -1,22 +1,29 @@
 require 'sinatra'
 require 'data_mapper'
-DataMapper.setup(:default,
-                 ENV['DATABASE_URL'] ||
-                 "sqlite3://#{Dir.pwd}/development.db")
+require './environments'
 
 class Contact
-  include DataMapper::Resource
-  property :id,           Serial
-  property :name,         String, :required => true
-  property :email,        String, :required => true
+	include DataMapper::Resource
+	property :id, Serial
+	property :name, String, :required => true
+  property :email, String, :required => true
+  property :comment, Text
 end
+
 DataMapper.finalize.auto_upgrade!
 
 get '/' do
-  @contacts = Contact.all || []
-  erb :index
+	@contacts = Contact.all
+	erb :'/index'
 end
 
 post '/contacts' do
-  Contact.create(name: params[:name], email: params[:email])
+	contact = Contact.new(params[:contact])
+	if contact.save
+		redirect '/'
+	else
+		@contacts = Contact.all
+		@error = "Post was not able to save. Please try again."
+		erb :'/index'
+	end
 end

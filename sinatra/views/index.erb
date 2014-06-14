@@ -1,7 +1,26 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>My Contacts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
-  <div>Hello</div>
-  <% @contacts.each do |contact| %>
-    <%= contact.name %>
-    <%= contact.email %>
-  <% end %>
+	<h1 class="title">My Address Book</h1>
+
+	<% @contacts.each do |c| %>
+	<p><%= c.name %>: <%= c.email %></p>
+	<% end %>
+
+	<% if @error %>
+	<p><%= @error %></p>
+	<% end %>
+	<form action="/contacts" method="post" accept-charset="utf-8">
+		<p>Name (required): <input type="text" name="contact[name]" /></p>
+		<p>Email (required): <input type="text" name="contact[email]"></p>
+		<p>Comment (optional): <textarea name="contact[comment]" id="" cols="30" rows="10"></textarea></p>
+		<p><input type="submit" value="Add contact" /></p>
+	</form>
+	
 </body>
+</html>
