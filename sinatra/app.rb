@@ -23,7 +23,7 @@ post '/contacts' do
 		redirect '/'
 	else
 		@contacts = Contact.all
-		@error = "Post was not able to save. Please try again."
+		@error = "Post was not saved. Enter a name and email before submitting."
 		erb :'/index'
 	end
 end
