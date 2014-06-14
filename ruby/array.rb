@@ -19,6 +19,9 @@
 
 my_array = [10, 9, 8, 7, 6]
 
+# TASK 1: Create one variable and assign it an array of integers. Create another
+# variable and assign it an array of mixed data types.
+
 
 # HOW TO ACCESS ITEMS INSIDE OF AN ARRAY
 # Arrays are indexed with position numbers
@@ -27,9 +30,16 @@ my_array = [10, 9, 8, 7, 6]
 fruits = ["apple", "banana", "orange", "peach"]
 
 fruits[0] # this will return "apple" since that is the 0th item in the array
-fruits[]
+fruits[3] # this will return "peach"
+
+# TASK 2: Use the brakets on one of the arrays you created to access the LAST element.
 
 
 # adding elements to an array
 
+games = []
+games << "Monopoly"
+games << "Connect Four"
 
+# TASK 3: Add three items to one of your arrays. Check the new length of your array
+# by calling the name of your array and length (example: games.length or fruits.length)
