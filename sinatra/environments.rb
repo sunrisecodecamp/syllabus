@@ -4,6 +4,4 @@ configure :development do
   set :port, 3000
 end
 
-configure :production do
-  DataMapper.setup(:default, ENV['DATABASE_URL'])
-end
+DataMapper.setup(:default, (ENV["DATABASE_URL"] || "sqlite3:///#{Dir.pwd}/development.sqlite3"))
